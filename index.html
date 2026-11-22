@@ -51,6 +51,7 @@ a.prog:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 .how div{border-top:2px solid var(--line);padding:10px 0 0}
 .how b{display:block;font:800 19px var(--display);text-transform:uppercase}
 .how span{color:var(--muted);font-size:14px}
+@media (min-width:900px){.how{grid-template-columns:repeat(5,1fr)}}
 .about{margin-top:28px;background:var(--surface);border:1px solid var(--line);border-left:6px solid var(--accent);border-radius:12px;padding:16px 18px;display:grid;gap:8px}
 .about h2{font:800 clamp(24px,3.2vw,30px)/1 var(--display);text-transform:uppercase;margin:0}
 .about p{margin:0;max-width:68ch}
@@ -126,6 +127,7 @@ footer a{color:var(--muted)}
   </section>
   <div class="how">
     <div><b>Kies</b><span>Tik op + bij een oefening en pas de tijd aan.</span></div>
+    <div><b>Deel</b><span>Deel je gymles met een collega via een link.</span></div>
     <div><b>Print</b><span>Oefeningen, materiaal en ombouw als pdf.</span></div>
     <div><b>Bewaar</b><span>Gymlessen blijven in de bibliotheek op je eigen apparaat.</span></div>
     <div><b>Beoordeel</b><span>Geef sterren, zo blijven de beste oefeningen over.</span></div>

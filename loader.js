@@ -19,9 +19,9 @@
     words: { unit: "gymles", Unit: "Gymles", title: "Mijn gymles", inLabel: "In de gymles", btnLabel: "Gymles",
              libName: "Gymles", libTitle: "Bewaarde gymlessen", units: "gymlessen" },
     texts: ({
-      gymles: { title: "Gymles groep 3–6 · Floorball in de gymles", eyebrow: "Gymles · groep 3–6", h1: "Floorball in de gymles",
+      gymles: { title: "Gymles groep 3–6 · Floorball in de gymles", eyebrow: "Floorball in de gymles · 6–9 jaar", h1: "Groep 3–6",
                 lead: "Spel- en oefenvormen waarin iedereen tegelijk meedoet: veel bewegen, veel balcontacten en plezier." },
-      o12:    { title: "Gymles groep 7–8 · Floorball in de gymles", eyebrow: "Gymles · groep 7–8", h1: "Floorball in de gymles",
+      o12:    { title: "Gymles groep 7–8 · Floorball in de gymles", eyebrow: "Floorball in de gymles · 9–12 jaar", h1: "Groep 7–8",
                 lead: "Spel- en oefenvormen waarin iedereen tegelijk meedoet: veel bewegen, keuzes maken, samenspelen en mikken." }
     })[PROGRAM] || {}
   };
