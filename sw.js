@@ -1,6 +1,6 @@
 /* Offline-app "Floorball gymles": eerst het netwerk (zodat iedereen de nieuwste versie krijgt), anders de bewaarde kopie.
    De oefeningen en gedeelde scripts komen uit de trainersapp (../floorball-training/) op hetzelfde domein. */
-const CACHE = "gymles-v4";
+const CACHE = "gymles-v5";
 const T = "../floorball-training/";
 const CORE = ["./", "index.html", "manifest.webmanifest", "loader.js", "gymles/", "o12/",
   "icons/ufc-logo.png", "icons/gymles-192.png", "icons/gymles-512.png", "icons/gymles-apple-touch-icon.png",
