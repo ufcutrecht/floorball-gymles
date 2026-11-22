@@ -17,7 +17,9 @@
     home: abs("./"),
     sw: abs("sw.js"), swScope: abs("./"),                            // eigen offline-app
     words: { unit: "gymles", Unit: "Gymles", title: "Mijn gymles", inLabel: "In de gymles", btnLabel: "Gymles",
-             libName: "Gymles", libTitle: "Bewaarde gymlessen", units: "gymlessen" },
+             libName: "Gymles", libTitle: "Bewaarde gymlessen", units: "gymlessen",
+             people: "kinderen", hallWord: "zaalindeling", hallName: "zaal",          // in de gymles: kinderen en zaal, geen spelers en veld
+             extra: "Reken 10 minuten extra voor uitleg en afsluiten." },
     texts: ({
       gymles: { title: "Gymles groep 3–6 · Floorball in de gymles", eyebrow: "Floorball in de gymles · 6–9 jaar", h1: "Groep 3–6",
                 lead: "Spel- en oefenvormen waarin iedereen tegelijk meedoet: veel bewegen, veel balcontacten en plezier." },
