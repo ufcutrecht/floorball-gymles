@@ -14,6 +14,8 @@ Dezelfde afspraken als in `ufcutrecht/floorball-training` (zie de CLAUDE.md daar
 - Test lokaal met beide repositories naast elkaar in één map (bijvoorbeeld `site/floorball-gymles`
   en `site/floorball-training`) en start `python3 -m http.server` in `site/`; deze app laadt
   `../floorball-training/`.
+- Draai vóór elke push de test van beide apps: `node floorball-training/tools/test-apps.js`
+  (vanuit de map met beide repositories). Push pas als er "Alles in orde." staat.
 - Hoog bij elke wijziging aan html, js of json de cacheversie op in `sw.js`
   (`const CACHE = "gymles-vN"` → `vN+1`).
 
@@ -23,7 +25,7 @@ Dezelfde afspraken als in `ufcutrecht/floorball-training` (zie de CLAUDE.md daar
 | --- | --- |
 | `index.html` | Startpagina "Floorball in de gymles", lijst `PROGRAMS`, accenten per leeftijd, verwijzing naar UFC Utrecht (ufcutrecht.nl). Aantallen uit `../floorball-training/shared/exercises.json`. |
 | `gymles/`, `o12/` | Laadpagina's: groep 3–6 en groep 7–8. Bevatten geen oefeningen. |
-| `loader.js` | Laadt `../floorball-training/<programma>/index.html` in, met `FB_APP`: logo, tekst "gymles" onder het logo, woorden ("gymles" i.p.v. "training"), kopteksten per programma, eigen manifest, iconen en service worker. |
+| `loader.js` | Laadt `../floorball-training/<programma>/index.html` in, met `FB_APP`: logo, tekst "gymles" onder het logo, woorden ("gymles" i.p.v. "training", ook `libName`, `libTitle`, `units`), kopteksten per programma en service worker. Manifest, iconen en naam op het beginscherm zet hij per element (`link[rel=manifest]`, `link[rel=icon]`, `link[rel=apple-touch-icon]`, `meta[name=apple-mobile-web-app-title]`), niet door letterlijke html te vervangen. |
 | `manifest.webmanifest`, `sw.js` | Offline-app en "zet op beginscherm" (naam "Floorball gymles"). De service worker ruimt alleen eigen caches (`gymles-…`) op, want de trainersapp gebruikt hetzelfde domein. |
 | `icons/` | UFC-logo en app-iconen met "GYMLES" eronder (`gymles-*.png`). |
 

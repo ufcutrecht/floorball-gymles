@@ -25,21 +25,30 @@
                 lead: "Spel- en oefenvormen waarin iedereen tegelijk meedoet: veel bewegen, keuzes maken, samenspelen en mikken." }
     })[PROGRAM] || {}
   };
-  var inject = '<base href="' + TRAIN + PROGRAM + '/">' +
-    '<script>window.FB_APP=' + JSON.stringify(APP) + '<\/script>';
+  var msg = function (t) { var m = document.getElementById("msg"); if (m) m.textContent = t; };
+  /* De pagina uit de trainersapp aanpassen per onderdeel (niet door letterlijke tekst te vervangen),
+     zodat een kleine wijziging in de html van de trainersapp dit niet ongemerkt breekt. */
+  function adapt(html) {
+    var doc = new DOMParser().parseFromString(html, "text/html"), head = doc.head;
+    var el = function (tag, attrs) { var e = doc.createElement(tag); for (var k in attrs) e.setAttribute(k, attrs[k]); return e; };
+    var put = function (sel, tag, attrs) {                          // bestaand element bijwerken, anders toevoegen
+      var e = head.querySelector(sel) || doc.querySelector(sel);
+      if (!e) { e = el(tag, {}); head.appendChild(e); }
+      for (var k in attrs) e.setAttribute(k, attrs[k]);
+    };
+    put('link[rel="manifest"]', "link", { rel: "manifest", href: abs("manifest.webmanifest") });
+    put('link[rel="icon"]', "link", { rel: "icon", href: abs("icons/gymles-192.png") });
+    put('link[rel="apple-touch-icon"]', "link", { rel: "apple-touch-icon", href: abs("icons/gymles-apple-touch-icon.png") });
+    put('meta[name="apple-mobile-web-app-title"]', "meta", { name: "apple-mobile-web-app-title", content: APP.appName });
+    if (APP.texts.title) doc.title = APP.texts.title;
+    /* base en FB_APP moeten vóór alle andere scripts staan */
+    var cfg = el("script", {}); cfg.textContent = "window.FB_APP=" + JSON.stringify(APP);
+    head.insertBefore(cfg, head.firstChild);
+    head.insertBefore(el("base", { href: TRAIN + PROGRAM + "/" }), head.firstChild);
+    return "<!doctype html>" + doc.documentElement.outerHTML;
+  }
   fetch(TRAIN + PROGRAM + "/index.html", { cache: "no-cache" })
     .then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); })
-    .then(function (html) {
-      html = html
-        .replace(/<head>/i, "<head>" + inject)
-        .replace('content="Floorball training"', 'content="' + APP.appName + '"')
-        .replace('href="../manifest.webmanifest"', 'href="' + abs("manifest.webmanifest") + '"')
-        .replace('href="../icons/icon-192.png"', 'href="' + abs("icons/gymles-192.png") + '"')
-        .replace('href="../icons/apple-touch-icon.png"', 'href="' + abs("icons/gymles-apple-touch-icon.png") + '"');
-      document.open(); document.write(html); document.close();
-    })
-    .catch(function () {
-      var m = document.getElementById("msg");
-      if (m) m.textContent = "De oefeningen konden niet worden geladen. Controleer je internetverbinding en probeer het opnieuw.";
-    });
+    .then(function (html) { html = adapt(html); document.open(); document.write(html); document.close(); })
+    .catch(function () { msg("De oefeningen konden niet worden geladen. Controleer je internetverbinding en probeer het opnieuw."); });
 })();
