@@ -1,11 +1,11 @@
 /* Offline-app "Floorball gymles": eerst het netwerk (zodat iedereen de nieuwste versie krijgt), anders de bewaarde kopie.
    De oefeningen en gedeelde scripts komen uit de trainersapp (../floorball-training/) op hetzelfde domein. */
-const CACHE = "gymles-v10";
+const CACHE = "gymles-v11";
 const T = "../floorball-training/";
 const CORE = ["./", "index.html", "manifest.webmanifest", "loader.js", "gymles/", "o12/",
   "icons/ufc-logo.png", "icons/gymles-192.png", "icons/gymles-512.png", "icons/gymles-apple-touch-icon.png",
   T + "gymles/index.html", T + "o12/index.html",
-  T + "shared/shim.js", T + "shared/config.js", T + "shared/online.js", T + "shared/exercises.json"];
+  T + "shared/shim.js", T + "shared/config.js", T + "shared/online.js", T + "shared/anim3d.js", T + "shared/exercises.json"];
 
 self.addEventListener("install", e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(CORE)).then(() => self.skipWaiting()));
